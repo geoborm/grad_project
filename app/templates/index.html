@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title%} Home {% endblock %}
+
+{% block header %}
+    <h1>Welcome to Chucklebook: Not Evil Like Facebook!</h1>
+    {% if current_user.is_authenticated %}
+        <h5>HAHA! Welcome back, {{ current_user.full_name }}!</h5>
+    {% else %}
+        <h5>Please Sign up or Log In</h5>    
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<!-- left side -->
+    <div class="row">
+        <div class="col-12 col-lg-8 order-1 order-lg-0">
+
+            {% for profile in profiles %}
+            <div class="card mt-3">
+                <div class="row g-0">
+                    <div class="col md-4">
+                        <img class="card-image-top" src="{{ profile.image_url }}" alt="Random Photo">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card.title">{{ profile.comic.full_name }}</h5>
+                            <h6 class="card-subtitle">{{ profile.location }}</h6>
+                            <p class="card-text">{{ profile.about_me }}</p>
+                            <ul>
+                                <a href="{{ profile.twitter_url }}">Twitter</a>
+                                <a href="{{ profile.instagram_url }}">Instagram</a>
+                                <a href="{{ profile.facebook_url }}">Facebook</a>
+                                <a href="{{ profile.tiktok_url }}">Tik Tok</a>
+                                <a href="{{ profile.youtube_url }}">YouTube</a>
+                            </ul>
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('edit_profile', profile_id=profile_id) }}" class="btn btn-success">Edit</a>
+                            <a href="" class="btn btn-danger">Delete</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% endfor %}
+<!-- right side -->
+        <div class="col-12 col-lg-4 order-0 order-lg-1">
+                <div class="position-sticky top-0">
+                    <div class="card mt-3">
+                        <div class="card-header">Search</div>
+                        <div class="card-body">
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search Comics">
+                                    <button type="Submit" class="btn btn-info">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

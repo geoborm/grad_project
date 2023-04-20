@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} Create A Profile {% endblock %}
+
+{% block header %}
+    <h1>Tell us about yourself, comic!</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <div class="card mt-3">
+                <div class="card-body">
+                <form action="" method="post">
+                    {{ form.csrf_token }}
+
+                    {{ form.username.label }}
+                    {{ form.username(class="form-control", placeholder="Enter A Username") }}
+
+                    {{ form.location.label }}
+                    {{ form.location(class="form-control", placeholder="Enter Location") }}
+
+                    {{ form.about_me.label }}
+                    {{ form.about_me(class="form-control", placeholder="Enter About Me") }}
+
+                    {{ form.image_url.label }}
+                    {{ form.image_url(class="form-control", placeholder="Enter Image URL") }}
+
+                    {{ form.twitter_url.label }}
+                    {{ form.twitter_url(class="form-control", placeholder="Enter Twitter URL") }}
+
+                    {{ form.instagram_url.label }}
+                    {{ form.instagram_url(class="form-control", placeholder="Enter Instagram URL") }}
+
+                    {{ form.facebook_url.label }}
+                    {{ form.facebook_url(class="form-control", placeholder="Enter Facebook URL") }}
+
+                    {{ form.tiktok_url.label }}
+                    {{ form.tiktok_url(class="form-control", placeholder="Enter TikTok URL") }}
+
+                    {{ form.youtube_url.label }}
+                    {{ form.youtube_url(class="form-control", placeholder="Enter Youtube URL") }}
+
+                    {{ form.submit(class="btn btn-info w-100 mt-3") }}
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
